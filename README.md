@@ -6,7 +6,7 @@ SpikeWizard is an advanced Python package designed to automate the process of fi
 
 ## Demo
 
-![alt text](image.png)
+![example](https://raw.githubusercontent.com/Chatr0uge/SpikeWizard/main/images/image.png)
 
 ## Installation
 
