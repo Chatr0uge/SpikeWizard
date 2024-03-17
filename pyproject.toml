@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "SpikeWizard"
-version = "0"
+version = "0.0.1"
 requires-python = ">=3.8"
 dependencies = ["	matplotlib==3.7.1", "numpy==1.26.4", "scipy==1.10.1"]
 authors = [{ name = "Andrea Combette", email = "pradyun@example.com" }]
