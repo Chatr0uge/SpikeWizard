@@ -41,7 +41,7 @@
 <span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">curve_fit</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="k">class</span> <span class="nc">SpikeFinder</span><span class="p">:</span>
+<div class="viewcode-block" id="SpikeFinder"><a class="viewcode-back" href="../documentation.html#SpikeWizard.SpikeFinder">[docs]</a><span class="k">class</span> <span class="nc">SpikeFinder</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This class is used to find the spikes in a given data. It uses the scipy.signal.find_peaks function to find the spikes.</span>
 <span class="sd">    &quot;&quot;&quot;</span>    
@@ -62,7 +62,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">find_widths</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">spikes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_spikes</span><span class="p">()</span>
     
-    <span class="k">def</span> <span class="nf">status_check</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SpikeFinder.status_check"><a class="viewcode-back" href="../documentation.html#SpikeWizard.SpikeFinder.status_check">[docs]</a>    <span class="k">def</span> <span class="nf">status_check</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         
         <span class="n">mode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span>
         <span class="n">kwargs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span>
@@ -82,13 +82,13 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;results: function must be one of </span><span class="si">%r</span><span class="s2">.&quot;</span> <span class="o">%</span> <span class="n">VALID_FUNCTION</span><span class="p">)</span>
         
         <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">set</span><span class="p">([</span><span class="s1">&#39;mean_position&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="s1">&#39;amplitude&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;results: function must be a callable with width and height .&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;results: function must be a callable with width and height .&quot;</span><span class="p">)</span></div>
             
-    <span class="k">def</span> <span class="nf">find_heights</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SpikeFinder.find_heights"><a class="viewcode-back" href="../documentation.html#SpikeWizard.SpikeFinder.find_heights">[docs]</a>    <span class="k">def</span> <span class="nf">find_heights</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         
-        <span class="bp">self</span><span class="o">.</span><span class="n">heights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">heights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> </div>
     
-    <span class="k">def</span> <span class="nf">find_widths</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="p">:</span>
+<div class="viewcode-block" id="SpikeFinder.find_widths"><a class="viewcode-back" href="../documentation.html#SpikeWizard.SpikeFinder.find_widths">[docs]</a>    <span class="k">def</span> <span class="nf">find_widths</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="p">:</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">data_filtered</span> <span class="o">=</span> <span class="n">gaussian_filter1d</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span>
         <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">))</span>
@@ -99,11 +99,11 @@
         <span class="n">mask2</span> <span class="o">=</span> <span class="n">mask</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">!=</span> <span class="n">mask</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1">#find the edges of the mask</span>
         
         <span class="n">widths_spline</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)[</span><span class="n">mask2</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)[</span><span class="n">mask2</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">widths</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">widths_spline</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">widths_spline</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">widths</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">widths_spline</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">widths_spline</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">find_spikes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SpikeFinder.find_spikes"><a class="viewcode-back" href="../documentation.html#SpikeWizard.SpikeFinder.find_spikes">[docs]</a>    <span class="k">def</span> <span class="nf">find_spikes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Find the indices of the spikes</span>
-        <span class="k">return</span> <span class="n">signal</span><span class="o">.</span><span class="n">find_peaks</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_filtered</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">heights</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">widths</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">signal</span><span class="o">.</span><span class="n">find_peaks</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_filtered</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">heights</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">widths</span><span class="p">)</span></div>
     
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">spike_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -113,16 +113,16 @@
     <span class="k">def</span> <span class="nf">spike_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">spikes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     
-    <span class="k">def</span> <span class="nf">get_spike_count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spike_indices</span><span class="p">)</span>
+<div class="viewcode-block" id="SpikeFinder.get_spike_count"><a class="viewcode-back" href="../documentation.html#SpikeWizard.SpikeFinder.get_spike_count">[docs]</a>    <span class="k">def</span> <span class="nf">get_spike_count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spike_indices</span><span class="p">)</span></div>
     
-    <span class="k">def</span> <span class="nf">get_spike_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_spike_count</span><span class="p">()</span> <span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span>
+<div class="viewcode-block" id="SpikeFinder.get_spike_rate"><a class="viewcode-back" href="../documentation.html#SpikeWizard.SpikeFinder.get_spike_rate">[docs]</a>    <span class="k">def</span> <span class="nf">get_spike_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_spike_count</span><span class="p">()</span> <span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span></div>
     
-    <span class="k">def</span> <span class="nf">get_spike_amplitudes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">spike_indices</span><span class="p">]</span>
+<div class="viewcode-block" id="SpikeFinder.get_spike_amplitudes"><a class="viewcode-back" href="../documentation.html#SpikeWizard.SpikeFinder.get_spike_amplitudes">[docs]</a>    <span class="k">def</span> <span class="nf">get_spike_amplitudes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">spike_indices</span><span class="p">]</span></div>
     
-    <span class="k">def</span> <span class="nf">get_spike_waveforms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SpikeFinder.get_spike_waveforms"><a class="viewcode-back" href="../documentation.html#SpikeWizard.SpikeFinder.get_spike_waveforms">[docs]</a>    <span class="k">def</span> <span class="nf">get_spike_waveforms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1">#TODO: Use the left and right bases to get the waveforms</span>
         <span class="n">waveforms</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">spike_indices</span><span class="p">:</span>
@@ -132,9 +132,9 @@
             <span class="k">if</span> <span class="n">start</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">end</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">):</span>
                 <span class="k">continue</span>
             <span class="n">waveforms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">])</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">waveforms</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">waveforms</span><span class="p">)</span></div></div>
 
-<div class="viewcode-block" id="Fitter"><a class="viewcode-back" href="../index.html#SpikeWizard.Fitter">[docs]</a><span class="k">class</span> <span class="nc">Fitter</span><span class="p">(</span><span class="n">SpikeFinder</span><span class="p">)</span> <span class="p">:</span>
+<div class="viewcode-block" id="Fitter"><a class="viewcode-back" href="../documentation.html#SpikeWizard.Fitter">[docs]</a><span class="k">class</span> <span class="nc">Fitter</span><span class="p">(</span><span class="n">SpikeFinder</span><span class="p">)</span> <span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Fitter Child class of SpikeFinder, used to fit the spikes with a given function.</span>
 
@@ -152,10 +152,10 @@
             
       
         
-<div class="viewcode-block" id="Fitter.gaussian"><a class="viewcode-back" href="../index.html#SpikeWizard.Fitter.gaussian">[docs]</a>    <span class="k">def</span> <span class="nf">gaussian</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
+<div class="viewcode-block" id="Fitter.gaussian"><a class="viewcode-back" href="../documentation.html#SpikeWizard.Fitter.gaussian">[docs]</a>    <span class="k">def</span> <span class="nf">gaussian</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sigma</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span></div>
     
-<div class="viewcode-block" id="Fitter.Lorentzian"><a class="viewcode-back" href="../index.html#SpikeWizard.Fitter.Lorentzian">[docs]</a>    <span class="k">def</span> <span class="nf">Lorentzian</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">gamma</span><span class="p">):</span>
+<div class="viewcode-block" id="Fitter.Lorentzian"><a class="viewcode-back" href="../documentation.html#SpikeWizard.Fitter.Lorentzian">[docs]</a>    <span class="k">def</span> <span class="nf">Lorentzian</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">gamma</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">gamma</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">gamma</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span></div>
     
     <span class="nd">@property</span>
@@ -192,7 +192,7 @@
         
         <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)),</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Fitter.plot_fit"><a class="viewcode-back" href="../index.html#SpikeWizard.Fitter.plot_fit">[docs]</a>    <span class="k">def</span> <span class="nf">plot_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="n">plt</span><span class="o">.</span><span class="n">Axes</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Fitter.plot_fit"><a class="viewcode-back" href="../documentation.html#SpikeWizard.Fitter.plot_fit">[docs]</a>    <span class="k">def</span> <span class="nf">plot_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="n">plt</span><span class="o">.</span><span class="n">Axes</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        plot_fit plot the data, the filtered data, the spikes and the fit.</span>
 
@@ -252,6 +252,13 @@
 
 
 <h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html#spikewizard-automated-spike-fitting-for-raw-signal-analysis">SpikeWizard: Automated Spike Fitting for Raw Signal Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html#todo">TODO :</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
