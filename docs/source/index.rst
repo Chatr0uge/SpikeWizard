@@ -10,7 +10,7 @@ Welcome to SpikeWizard's documentation!
    :maxdepth: 2
    
    introduction
-   api
+   modules
 
 
 

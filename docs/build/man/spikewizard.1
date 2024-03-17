@@ -1,0 +1,194 @@
+.\" Man page generated from reStructuredText.
+.
+.
+.nr rst2man-indent-level 0
+.
+.de1 rstReportMargin
+\\$1 \\n[an-margin]
+level \\n[rst2man-indent-level]
+level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
+-
+\\n[rst2man-indent0]
+\\n[rst2man-indent1]
+\\n[rst2man-indent2]
+..
+.de1 INDENT
+.\" .rstReportMargin pre:
+. RS \\$1
+. nr rst2man-indent\\n[rst2man-indent-level] \\n[an-margin]
+. nr rst2man-indent-level +1
+.\" .rstReportMargin post:
+..
+.de UNINDENT
+. RE
+.\" indent \\n[an-margin]
+.\" old: \\n[rst2man-indent\\n[rst2man-indent-level]]
+.nr rst2man-indent-level -1
+.\" new: \\n[rst2man-indent\\n[rst2man-indent-level]]
+.in \\n[rst2man-indent\\n[rst2man-indent-level]]u
+..
+.TH "SPIKEWIZARD" "1" "Mar 17, 2024" "" "SpikeWizard"
+.SH NAME
+spikewizard \- SpikeWizard 0.0.1
+.SH INTRODUCTION
+.SH SPIKEWIZARD: AUTOMATED SPIKE FITTING FOR RAW SIGNAL ANALYSIS
+.SS Introduction:
+.sp
+SpikeWizard is an advanced Python package designed to automate the process of fitting spikes in raw signals. It offers a comprehensive framework for analyzing signals containing spikes of various types and fitting them to a specified function. SpikeWizard harnesses cutting\-edge algorithms and techniques to identify and fit multiple spikes within a signal seamlessly, eliminating the need for manual intervention in setting initial conditions.
+.SS Demo
+\fI\%example\fP.SS Installation
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+pip install SpikeWizard
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.SS Key Features:
+.INDENT 0.0
+.IP 1. 3
+Automated Spike Identification: SpikeWizard employs sophisticated algorithms from \fBscipy\fP to automatically detect spikes within raw signal data. These algorithms are robust and adaptable, capable of handling various signal characteristics and noise levels. Typical from a signal noise ration varying between : $0 to 0.3$, which is quite reasonable for experimental data.
+.IP 2. 3
+Flexible Function Types: The package supports fitting spikes to a wide range of function types, providing flexibility to accommodate different signal profiles and experimental requirements. Users can specify the desired function type based on their data characteristics and analysis objectives.
+.IP 3. 3
+Multi\-Spike Fitting: SpikeWizard excels at fitting multiple spikes within the same signal simultaneously. This feature enhances efficiency by enabling users to analyze complex signals containing multiple spike occurrences without the need for iterative processing.
+.IP 4. 3
+Automatic Initial Condition Determination: SpikeWizard automatically determines initial conditions for spike fitting, eliminating the manual effort typically required to set initial parameters. This streamlines the analysis process and reduces user intervention.
+.IP 5. 3
+Customizable Parameters: While SpikeWizard automates many aspects of spike fitting, it also offers users the flexibility to customize fitting parameters according to their specific requirements. This includes options to adjust algorithm parameters, function properties, and fitting constraints. This Customization handles \fBfind_peaks\fP parameters from \fBscipy.signal\fP
+.IP 6. 3
+Visualization Tools: The package provides visualization tools to facilitate comprehensive analysis and interpretation of fitted spikes. Users can visualize the original signal overlaid with fitted spikes, along with diagnostic plots to assess the quality of fitting and evaluate model performance.
+.UNINDENT
+.SS Usage Example:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+from SpikeWizard import Fitter
+
+# Load raw signal data
+raw_signal = ...
+
+# Specify function type for spike fitting
+def function(x, amp, x_0, typical_width) : ...
+
+# Fit spikes automatically with SpikeWizard
+fitter = Fitter(raw_signal, function_type)
+fitted_spikes = Fitter.fit
+
+# Visualize original signal and fitted spikes
+Fitter.plot_fit()
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.SS Documentation
+.sp
+For the moment there are only two predefined function implemented in SpikeWizard, both are commonly used in physics and chemical fields, which is the main audience of this package. The first function is a simple gaussian, and the other am amplitude dependant Lorentzian.
+.INDENT 0.0
+.IP \(bu 2
+$mathcal{G}(x) = a exp(\-frac{(x \- mu)^2}{2 sigma^2})$
+.IP \(bu 2
+$mathcal{L}(x) = a  frac{Gamma^2}{((x \- x0)^2 + Gamma^2)}$
+.UNINDENT
+.sp
+However, the user is free to implement his own spike function as long as its main arguments are \fBamplitude\fP, \fBwidth\fP, \fBposition\fP, it will be well handled by the package
+.SS Conclusion:
+.sp
+SpikeWizard revolutionizes spike fitting in raw signal analysis by offering a powerful and automated solution that caters to diverse research needs. Its ability to handle various spike types, fit multiple spikes simultaneously, and determine initial conditions automatically makes it an invaluable tool for researchers and practitioners in fields such as neuroscience, signal processing, and beyond. With SpikeWizard, analyzing spike data becomes more efficient, accurate, and accessible, empowering users to extract meaningful insights from their signals effortlessly.
+.SS Collaboration
+.SH TODO :
+.INDENT 0.0
+.IP \(bu 2
+use left and right bases to compute the waveforms
+.IP \(bu 2
+develop mathematically the spline decomposition and special case
+.IP \(bu 2
+Uncertainties on widths and amplitudes
+.IP \(bu 2
+Benchmarks on various number of spikes, SNR
+.IP \(bu 2
+Fix the Spline decomposition parameter
+.IP \(bu 2
+Fix The Filtering parameters
+.IP \(bu 2
+
+.UNINDENT
+.SH SRC
+.SS SpikeWizard module
+.INDENT 0.0
+.TP
+.B class  SpikeWizard.Fitter(data, mode=\(aqauto\(aq, filter=True, function:  Union[str,  Callable]  =  \(aqgaussian\(aq, **kwargs)
+Bases: \fI\%SpikeFinder\fP
+.INDENT 7.0
+.TP
+.B Lorentzian(x, a, x0, gamma)
+.UNINDENT
+.INDENT 7.0
+.TP
+.B property  fit
+.UNINDENT
+.INDENT 7.0
+.TP
+.B gaussian(x, a, x0, sigma)
+.UNINDENT
+.INDENT 7.0
+.TP
+.B plot_fit(ax:  bool  |  matplotlib.axes._axes.Axes  =  False, **kwargs)
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B class  SpikeWizard.SpikeFinder(data, mode=\(aqauto\(aq, filter=True, function:  Union[str,  Callable]  =  \(aqgaussian\(aq, **kwargs)
+Bases: \fBobject\fP
+.INDENT 7.0
+.TP
+.B find_heights()
+.UNINDENT
+.INDENT 7.0
+.TP
+.B find_spikes()
+.UNINDENT
+.INDENT 7.0
+.TP
+.B find_widths()
+.UNINDENT
+.INDENT 7.0
+.TP
+.B get_spike_amplitudes()
+.UNINDENT
+.INDENT 7.0
+.TP
+.B get_spike_count()
+.UNINDENT
+.INDENT 7.0
+.TP
+.B get_spike_rate()
+.UNINDENT
+.INDENT 7.0
+.TP
+.B get_spike_waveforms()
+.UNINDENT
+.INDENT 7.0
+.TP
+.B property  spike_indices
+.UNINDENT
+.INDENT 7.0
+.TP
+.B property  spike_properties
+.UNINDENT
+.INDENT 7.0
+.TP
+.B status_check()
+.UNINDENT
+.UNINDENT
+.SH AUTHOR
+Andrea Combette
+.SH COPYRIGHT
+2024, Andrea Combette
+.\" Generated by docutils manpage writer.
+.
