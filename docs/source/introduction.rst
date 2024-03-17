@@ -1,0 +1,3 @@
+introduction
+============
+.. mdinclude:: ../../README.md

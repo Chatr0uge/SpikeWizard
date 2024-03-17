@@ -8,7 +8,9 @@ from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
 
 class SpikeFinder:
-    
+    """
+    This class is used to find the spikes in a given data. It uses the scipy.signal.find_peaks function to find the spikes.
+    """    
     def __init__(self, data, mode = 'auto', filter = True, function : str | Callable = "gaussian", **kwargs):
         
         self.data = data
@@ -99,7 +101,14 @@ class SpikeFinder:
         return np.array(waveforms)
 
 class Fitter(SpikeFinder) :
-    
+    """
+    Fitter Child class of SpikeFinder, used to fit the spikes with a given function.
+
+    Parameters
+    ----------
+    SpikeFinder : SpikeFinder
+        _description_
+    """    
     def __init__(self, data, mode='auto', filter=True, function: str | Callable = "gaussian", **kwargs):
         
         super().__init__(data, mode, filter, function, **kwargs) 
@@ -117,6 +126,9 @@ class Fitter(SpikeFinder) :
     
     @property
     def fit(self, **kwargs):
+        """
+        fit fits the spikes with the given function and returns the fitted data.
+        """        
         
         def func(x, *params):
         
@@ -147,6 +159,19 @@ class Fitter(SpikeFinder) :
         return func(np.arange(len(self.data)), *self.params)
 
     def plot_fit(self, ax : bool | plt.Axes = False, **kwargs):
+        """
+        plot_fit plot the data, the filtered data, the spikes and the fit.
+
+        Parameters
+        ----------
+        ax : bool | plt.Axes, optional
+            matplotlib.pyplot.Axes instances, by default False
+
+        Returns
+        -------
+        plt.Axes
+            _description_
+        """        
         
         #TODO: Add the possibility to customize the plot with kwargs
         if not ax:

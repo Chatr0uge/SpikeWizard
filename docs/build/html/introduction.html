@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>introduction &#8212; SpikeWizard 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Documnetation" href="documentation.html" />
+    <link rel="prev" title="Welcome to SpikeWizard’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="introduction">
+<h1>introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h1>
+</section>
+<section id="spikewizard-automated-spike-fitting-for-raw-signal-analysis">
+<h1>SpikeWizard: Automated Spike Fitting for Raw Signal Analysis<a class="headerlink" href="#spikewizard-automated-spike-fitting-for-raw-signal-analysis" title="Permalink to this heading">¶</a></h1>
+<section id="id1">
+<h2>Introduction:<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p>SpikeWizard is an advanced Python package designed to automate the process of fitting spikes in raw signals. It offers a comprehensive framework for analyzing signals containing spikes of various types and fitting them to a specified function. SpikeWizard harnesses cutting-edge algorithms and techniques to identify and fit multiple spikes within a signal seamlessly, eliminating the need for manual intervention in setting initial conditions.</p>
+</section>
+<section id="demo">
+<h2>Demo<a class="headerlink" href="#demo" title="Permalink to this heading">¶</a></h2>
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Chatr0uge/SpikeWizard/main/images/image.png"><img alt="example" src="https://raw.githubusercontent.com/Chatr0uge/SpikeWizard/main/images/image.png" /></a>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>SpikeWizard
+</pre></div>
+</div>
+</section>
+<section id="key-features">
+<h2>Key Features:<a class="headerlink" href="#key-features" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Automated Spike Identification: SpikeWizard employs sophisticated algorithms from <strong>scipy</strong> to automatically detect spikes within raw signal data. These algorithms are robust and adaptable, capable of handling various signal characteristics and noise levels. Typical from a signal noise ration varying between : $0 to 0.3$, which is quite reasonable for experimental data.</p></li>
+<li><p>Flexible Function Types: The package supports fitting spikes to a wide range of function types, providing flexibility to accommodate different signal profiles and experimental requirements. Users can specify the desired function type based on their data characteristics and analysis objectives.</p></li>
+<li><p>Multi-Spike Fitting: SpikeWizard excels at fitting multiple spikes within the same signal simultaneously. This feature enhances efficiency by enabling users to analyze complex signals containing multiple spike occurrences without the need for iterative processing.</p></li>
+<li><p>Automatic Initial Condition Determination: SpikeWizard automatically determines initial conditions for spike fitting, eliminating the manual effort typically required to set initial parameters. This streamlines the analysis process and reduces user intervention.</p></li>
+<li><p>Customizable Parameters: While SpikeWizard automates many aspects of spike fitting, it also offers users the flexibility to customize fitting parameters according to their specific requirements. This includes options to adjust algorithm parameters, function properties, and fitting constraints. This Customization handles <strong>find_peaks</strong> parameters from <strong>scipy.signal</strong></p></li>
+<li><p>Visualization Tools: The package provides visualization tools to facilitate comprehensive analysis and interpretation of fitted spikes. Users can visualize the original signal overlaid with fitted spikes, along with diagnostic plots to assess the quality of fitting and evaluate model performance.</p></li>
+</ol>
+</section>
+<section id="usage-example">
+<h2>Usage Example:<a class="headerlink" href="#usage-example" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">SpikeWizard</span> <span class="kn">import</span> <span class="n">Fitter</span>
+
+<span class="c1"># Load raw signal data</span>
+<span class="n">raw_signal</span> <span class="o">=</span> <span class="o">...</span>
+
+<span class="c1"># Specify function type for spike fitting</span>
+<span class="k">def</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">amp</span><span class="p">,</span> <span class="n">x_0</span><span class="p">,</span> <span class="n">typical_width</span><span class="p">)</span> <span class="p">:</span> <span class="o">...</span>
+
+<span class="c1"># Fit spikes automatically with SpikeWizard</span>
+<span class="n">fitter</span> <span class="o">=</span> <span class="n">Fitter</span><span class="p">(</span><span class="n">raw_signal</span><span class="p">,</span> <span class="n">function_type</span><span class="p">)</span>
+<span class="n">fitted_spikes</span> <span class="o">=</span> <span class="n">Fitter</span><span class="o">.</span><span class="n">fit</span>
+
+<span class="c1"># Visualize original signal and fitted spikes</span>
+<span class="n">Fitter</span><span class="o">.</span><span class="n">plot_fit</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading">¶</a></h2>
+<p>For the moment there are only two predefined function implemented in SpikeWizard, both are commonly used in physics and chemical fields, which is the main audience of this package. The first function is a simple gaussian, and the other am amplitude dependant Lorentzian.</p>
+<ul class="simple">
+<li><p>$mathcal{G}(x) = a exp(-frac{(x - mu)^2}{2 sigma^2})$</p></li>
+<li><p>$mathcal{L}(x) = a  frac{Gamma^2}{((x - x0)^2 + Gamma^2)}$</p></li>
+</ul>
+<p>However, the user is free to implement his own spike function as long as its main arguments are <strong>amplitude</strong>, <strong>width</strong>, <strong>position</strong>, it will be well handled by the package</p>
+</section>
+<section id="conclusion">
+<h2>Conclusion:<a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
+<p>SpikeWizard revolutionizes spike fitting in raw signal analysis by offering a powerful and automated solution that caters to diverse research needs. Its ability to handle various spike types, fit multiple spikes simultaneously, and determine initial conditions automatically makes it an invaluable tool for researchers and practitioners in fields such as neuroscience, signal processing, and beyond. With SpikeWizard, analyzing spike data becomes more efficient, accurate, and accessible, empowering users to extract meaningful insights from their signals effortlessly.</p>
+</section>
+<section id="collaboration">
+<h2>Collaboration<a class="headerlink" href="#collaboration" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+<section id="todo">
+<h1>TODO :<a class="headerlink" href="#todo" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><p>use left and right bases to compute the waveforms</p></li>
+<li><p>develop mathematically the spline decomposition and special case</p></li>
+<li><p>Uncertainties on widths and amplitudes</p></li>
+<li><p>Benchmarks on various number of spikes, SNR</p></li>
+<li><p>Fix the Spline decomposition parameter</p></li>
+<li><p>Fix The Filtering parameters</p></li>
+<li><p><span class="raw-html-md"><del>Implement residuals analysis</del></span></p></li>
+</ul>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">SpikeWizard</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#spikewizard-automated-spike-fitting-for-raw-signal-analysis">SpikeWizard: Automated Spike Fitting for Raw Signal Analysis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Introduction:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#demo">Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#key-features">Key Features:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usage-example">Usage Example:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conclusion">Conclusion:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#collaboration">Collaboration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#todo">TODO :</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentation.html">Documnetation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to SpikeWizard’s documentation!</a></li>
+      <li>Next: <a href="documentation.html" title="next chapter">Documnetation</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2024, Andrea Combette.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/introduction.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
