@@ -10,7 +10,20 @@ import matplotlib.pyplot as plt
 class SpikeFinder:
     
     def __init__(self, data, mode = 'auto', filter = True, function : str | Callable = "gaussian", **kwargs):
-        
+        """
+        __init__ _summary_
+
+        Parameters
+        ----------
+        data : _type_
+            _description_
+        mode : str, optional
+            _description_, by default 'auto'
+        filter : bool, optional
+            _description_, by default True
+        function : str | Callable, optional
+            _description_, by default "gaussian"
+        """        
         self.data = data
         self.kwargs = kwargs
         self.mode = mode
@@ -101,7 +114,20 @@ class SpikeFinder:
 class Fitter(SpikeFinder) :
     
     def __init__(self, data, mode='auto', filter=True, function: str | Callable = "gaussian", **kwargs):
-        
+        """
+        __init__ _summary_
+
+        Parameters
+        ----------
+        data : _type_
+            _description_
+        mode : str, optional
+            _description_, by default 'auto'
+        filter : bool, optional
+            _description_, by default True
+        function : str | Callable, optional
+            _description_, by default "gaussian"
+        """        
         super().__init__(data, mode, filter, function, **kwargs) 
         self.available_function = {'gaussian': self.gaussian, 'Lorentzian': self.Lorentzian, 'custom': self.function}
         if function is not callable : 
