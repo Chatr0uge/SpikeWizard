@@ -1,5 +1,6 @@
-Documnetation
+Documentation
 =============
+
 .. automodule:: SpikeWizard
    :members:
    :undoc-members:
