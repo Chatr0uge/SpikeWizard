@@ -21,7 +21,7 @@ class SpikeFinder:
         mode : str, optional
             _description_, by default 'auto'
         filter : bool, optional
-            _description_, by default True
+            _pip description_, by default True
         function : str | Callable, optional
             _description_, by default "gaussian"
         """
@@ -223,7 +223,7 @@ class Fitter(SpikeFinder):
 
         return func(np.arange(len(self.data)), *self.params)
 
-    def plot_fit(self, ax: bool | plt.Axes = False, **kwargs):
+    def plot_fit(self, ax=False, **kwargs):
 
         # TODO: Add the possibility to customize the plot with kwargs
         if not ax:
